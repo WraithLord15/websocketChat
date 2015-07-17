@@ -37,6 +37,7 @@ wss.on('connection', function(ws) {
   	});
 });
 
+//construct a message to send to client
 function constructMessage(type, msg) {
     var message = {
         "type" : type,
