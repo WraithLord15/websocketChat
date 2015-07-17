@@ -24,9 +24,9 @@
 			};
 			
 			ws.onmessage = function(message) {
-				var data = message.data;
+				var data = JSON.parse(message.data);
 				websocketClient.callback(data);
-				console.log('message says: ' + data);
+				console.log('message says: ' + data.message);
 			};
 			
 			websocketClient.ws = ws;
@@ -58,7 +58,11 @@
 		};
 		
 		websocketClient.subscribe(function(message) {
-			$scope.messages.push(message);
+		    if(message.type == 'message') {
+			    $scope.messages.push(message.message);
+			} else if (message.type == 'numClients') {
+			    $scope.numClients = message.message;
+			}
 			$scope.$apply();
 		});
 		

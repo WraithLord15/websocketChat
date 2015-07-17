@@ -24,12 +24,11 @@ wss.on('connection', function(ws) {
   	for(var i = 0; i < msgList.length; i++) {
   		ws.send(constructMessage("message", msgList[i]));
   	}
-//  	ws.send("numClients", numClients);
+  	wss.broadcast(constructMessage("numClients", numClients));
   	ws.on('message', function(msg){
   		console.log('got message: ' + msg);
   		msgList.push(msg);
-//   	ws.send(msg);
-		wss.broadcast(msg);
+		wss.broadcast(constructMessage("message", msg));
   	});
   	ws.on('close', function() {
     	console.log('client left');
@@ -44,5 +43,5 @@ function constructMessage(type, msg) {
         "message" : msg
     };
 
-    return message;
+    return JSON.stringify(message);
 }

@@ -57,12 +57,8 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Users Connected</h3>
                     </div>
-                    <div ng-controller="UserListController as userListCtrl">
-                        <table class="table table-stripped">
-                            <tr ng-repeat="user in userListCtrl.testUserList">
-                                <td>{{ user }}</td>
-                            </tr>
-                        </table>
+                    <div class="panel-body">
+                        {{ numClients }}
                     </div>
                 </div>
             </div>
