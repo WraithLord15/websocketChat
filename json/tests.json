@@ -1,0 +1,12 @@
+[
+	{
+		"name": "Test1",
+		"des": "test1ing",
+		"canPress": false
+	},
+	{
+		"name": "Test2",
+		"des": "test2ing",
+		"canPress": true
+	}
+]

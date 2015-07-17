@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="myApp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <script type="text/javascript"
+            src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript"
+            src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet"
+          href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript"
+            src="js/ui-bootstrap-0.13.0.js"></script>
+    <title>WS Test</title>
+</head>
+
+
+<body ng-controller="ChatController as chat">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-8">
+                <form>
+                    <h3>Chat:</h3>
+
+                    <div class="input-group">
+                <textarea type="text" ng-model="chat.text"
+                          class="form-control" rows="3"
+                          placeholder="Enter Message...">
+                </textarea>
+                <span class="input-group-btn">
+                    <button ng-click="chat.testSend()"
+                            class="btn btn-primary btn-xs">
+                        Send
+                        <span class="glyphicon glyphicon-share-alt"
+                              aria-hidden="true"></span>
+                    </button>
+				</span>
+                    </div>
+                </form>
+                <br/>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Messages</h3>
+                    </div>
+                    <ul class="list-group">
+                        <li ng-repeat="message in messages track by $index"
+                            class="list-group-item">
+                            <p>{{ message }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Users Connected</h3>
+                    </div>
+                    <div ng-controller="UserListController as userListCtrl">
+                        <table class="table table-stripped">
+                            <tr ng-repeat="user in userListCtrl.testUserList">
+                                <td>{{ user }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+</html>
