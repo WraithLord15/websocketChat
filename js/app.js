@@ -47,6 +47,7 @@
 	app.controller('ChatController', ['websocketClient','$scope', 
 		function(websocketClient, $scope) {
 		$scope.messages = [];
+
 		this.text = '';
 		websocketClient.setup();
 		
@@ -59,9 +60,13 @@
 		
 		websocketClient.subscribe(function(message) {
 		    if(message.type == 'message') {
-			    $scope.messages.push(message.message);
+			    $scope.messages.push(message);
 			} else if (message.type == 'numClients') {
 			    $scope.numClients = message.message;
+			} else if (message.type == 'connect') {
+			    $scope.messages.push(message);
+			} else if (message.type == 'disconnect') {
+			    $scope.messages.push(message);
 			}
 			$scope.$apply();
 		});

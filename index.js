@@ -20,27 +20,33 @@ var numClients = 0;
 
 wss.on('connection', function(ws) {
   	console.log('client connected');
+  	wss.broadcast(constructMessage("connect", "A Client has joined", "green"));
   	numClients = numClients + 1;
-  	for(var i = 0; i < msgList.length; i++) {
-  		ws.send(constructMessage("message", msgList[i]));
+    for(var i = 0; i < msgList.length; i++) {
+  		ws.send(msgList[i]);
   	}
   	wss.broadcast(constructMessage("numClients", numClients));
   	ws.on('message', function(msg){
   		console.log('got message: ' + msg);
-  		msgList.push(msg);
-		wss.broadcast(constructMessage("message", msg));
+  		var message = constructMessage("message", msg, "black");
+  		msgList.push(message);
+		wss.broadcast(message);
   	});
   	ws.on('close', function() {
     	console.log('client left');
     	numClients = numClients - 1;
+    	wss.broadcast(constructMessage("disconnect","A Client has left", "red"))
   	});
 });
 
 //construct a message to send to client
-function constructMessage(type, msg) {
+function constructMessage(type, msg, clr) {
+    var date = Date.now();
     var message = {
         "type" : type,
-        "message" : msg
+        "message" : msg,
+        "color" : clr,
+        "date" : date
     };
 
     return JSON.stringify(message);
