@@ -18,54 +18,74 @@
 <body ng-controller="ChatController as chat">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-8">
-                <form>
-                    <h3>Chat:</h3>
-
-                    <div class="input-group">
-                <input type="text" ng-model="chat.text"
-                          class="form-control" rows="3"
-                          placeholder="Enter Message...">
-                </input>
-                <span class="input-group-btn">
-                    <button ng-click="chat.testSend()"
-                            class="btn btn-primary">
-                        Send
-                        <span class="glyphicon glyphicon-share-alt"
-                              aria-hidden="true"></span>
-                    </button>
-				</span>
-                    </div>
-                </form>
-                <br/>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Messages</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li ng-repeat="message in messages track by $index"
-                            class="list-group-item">
-                            <p ng-style="{ color : message.color }">{{ message.message }}</p>
-                            <small ng-style="{color: black}">{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</small>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Users Connected</h3>
-                    </div>
-                    <div class="panel-body">
-                        {{ numClients }}
-                    </div>
-                </div>
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">WebSChat</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Chat<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Options</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <p class="navbar-text">Signed in as User</p>
+                <li><a href="#">Help</a></li>
+            </ul>
         </div>
     </div>
 </nav>
+<div class="row">
+    <div class="col-xs-8">
+        <form>
+            <h3>Chat:</h3>
+
+            <div class="input-group">
+                <input type="text" ng-model="chat.text"
+                       class="form-control" rows="3"
+                       placeholder="Enter Message...">
+                </input>
+<span class="input-group-btn">
+<button ng-click="chat.testSend()"
+        class="btn btn-primary">
+    Send
+<span class="glyphicon glyphicon-share-alt"
+      aria-hidden="true"></span>
+</button>
+</span>
+            </div>
+        </form>
+        <br/>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Messages</h3>
+            </div>
+            <ul class="list-group">
+                <li ng-repeat="message in messages track by $index"
+                    class="list-group-item">
+                    <p ng-style="{ color : message.color }">{{ message.message }}</p>
+                    <small ng-style="{color: black}">{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users Connected</h3>
+            </div>
+            <div class="panel-body">
+                {{ numClients }}
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
