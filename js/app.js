@@ -1,6 +1,12 @@
 (function(){
-	var app = angular.module('myApp', ['ui.bootstrap']);
-	
+	var app = angular.module('myApp', ['ui.bootstrap', 'ngRoute']);
+
+	app.config(['$routeProvider', function($routeProvider) {
+	    $routeProvider
+	        .when('/', { templateUrl: 'partials/home.html', controller:'PageCtrl' })
+	        .when('/help', { templateUrl: 'partials/help.html', controller:'PageCtrl' })
+	        .when('/chat', { templateUrl: 'partials/chat.html', controller:'PageCtrl'});
+	}]);
 
 	app.factory('websocketClient', function() {
 		var websocketClient = {};
@@ -75,5 +81,9 @@
 
 	app.controller('UserListController', function () {
 	    this.testUserList = ['Randell', 'Alexa'];
+	});
+
+	app.controller('PageCtrl', function() {
+	    console.log('Page Controller up');
 	});
 })();
